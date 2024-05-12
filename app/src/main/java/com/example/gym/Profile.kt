@@ -1,43 +1,73 @@
 package com.example.gym
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import android.text.InputType
+import android.widget.EditText
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.gym.databinding.ActivityProfileBinding
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class Profile : AppCompatActivity() {
 
+    private lateinit var adapter: TodoAdapter
+    private lateinit var viewModel: MainActvityData
 
-    private lateinit var db:NoteDatabaseHelper
-    private lateinit var notesAdapter: NotesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_profile)
+        val recyclerView: RecyclerView = findViewById(R.id.rvTodoList)
+        val repository = NoteRepository(NoteDatabase.getInstance(this))
 
-        blinding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(blinding.root)
+        viewModel = ViewModelProvider(this)[MainActvityData::class.java]
 
-        db= NoteDatabaseHelper(this)
-        notesAdapter= NotesAdapter(db.getAllNotes(),this)
-
-        blinding.notesRecyclerView.layoutManager=LinearLayoutManager(this)
-        blinding.notesRecyclerView.adapter=notesAdapter
-
-        blinding.addbutton.setOnClickListener{
-            val intent=Intent(this,AddNoteActivity::class.java)
-            startActivity(intent)
+        viewModel.data.observe(this) {
+            adapter = TodoAdapter(it, repository, viewModel)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this)
         }
+        CoroutineScope(Dispatchers.IO).launch {
+            val data = repository.getAllNoteItems()
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        notesAdapter.refreshData(db.getAllNotes())
-
+            runOnUiThread {
+                viewModel.setData(data)
+            }
+        }
+        val addItem: ImageView = findViewById(R.id.imageView2)
+        displayAlert(repository)
     }
 }
+ private fun displayAlert(repository:NoteRepository) {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setTitle("Enter New Note item:")
+        builder.setMessage("Enter the note below:")
+
+     val input = EditText(this)
+     input.inputType = InputType.TYPE_CLASS_TEXT
+
+        builder.setView(input)
+
+        builder.setPositiveButton("Ok") { dialog, which ->
+            val item = input.text.toString()
+            CoroutineScope(Dispatchers.IO).launch {
+                repository.insert(Note(item))
+            }
+        }
+
+
+        builder.setNegativeButton("Cancel") { dialog, which ->
+            dialog.cancel()
+        }
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
+
 
 

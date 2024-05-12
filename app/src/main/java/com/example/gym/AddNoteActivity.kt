@@ -3,20 +3,22 @@ package com.example.gym
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gym.databinding.ActivityAddNoteBinding
-import com.example.gym.databinding.ActivityProfileBinding
 
 class AddNoteActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddNoteBinding
-    private lateinit var db:NoteDatabaseHelper
 
+    private lateinit var db:NoteDatabase
+    private lateinit var viewModel: MainActvityData
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityAddNoteBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        db= NoteDatabaseHelper(this)
+        setContentView(R.layout.activity_add_note)
+        val recyclerView: RecyclerView = findViewById(R.id.rvTodoList)
+        val repository = NoteRepository(NoteDatabase.getInstance(this))
+
+        db= NoteDatabase(this)
 
         binding.savebutton.setOnClickListener {
             val title=binding.titleEdittext.text.toString()
