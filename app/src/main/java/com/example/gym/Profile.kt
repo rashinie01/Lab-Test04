@@ -11,7 +11,7 @@ import com.example.gym.databinding.ActivityProfileBinding
 
 class Profile : AppCompatActivity() {
 
-    private lateinit var blinding:ActivityProfileBinding
+
     private lateinit var db:NoteDatabaseHelper
     private lateinit var notesAdapter: NotesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class Profile : AppCompatActivity() {
         blinding.notesRecyclerView.adapter=notesAdapter
 
         blinding.addbutton.setOnClickListener{
-            val intent=Intent(this,Addnote::class.java)
+            val intent=Intent(this,AddNoteActivity::class.java)
             startActivity(intent)
         }
 
