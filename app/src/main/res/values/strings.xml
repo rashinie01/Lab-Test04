@@ -28,10 +28,15 @@
     <string name="female">Female</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
-    <string name="new">new</string>
+
     <string name="male">Male</string>
     <string name="update">update</string>
     <string name="delete">Delete</string>
     <string name="new1">New</string>
     <string name="birthday">Birthday</string>
+    <string name="note">Note</string>
+    <string name="age">Age</string>
+    <string name="fat_losing_challenge_with_efficient_workouts_join_the_plan_and_fight_the_fat">fat_losing_challenge_with_efficient_workouts_join_the_plan_and_fight_the_fat</string>
+    <string name="add_note">Add note</string>
+    <string name="notes_for_your_exercises">Notes for your exercises</string>
 </resources>

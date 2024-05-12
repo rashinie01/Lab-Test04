@@ -1,28 +1,43 @@
 package com.example.gym
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gym.databinding.ActivityProfileBinding
 
 class Profile : AppCompatActivity() {
 
-    lateinit var btnDelete: Button
-
+    private lateinit var blinding:ActivityProfileBinding
+    private lateinit var db:NoteDatabaseHelper
+    private lateinit var notesAdapter: NotesAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
 
+        blinding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(blinding.root)
 
-        btnDelete=findViewById(R.id.btnDelete)
+        db= NoteDatabaseHelper(this)
+        notesAdapter= NotesAdapter(db.getAllNotes(),this)
 
-        btnDelete.setOnClickListener{
-            delete()
+        blinding.notesRecyclerView.layoutManager=LinearLayoutManager(this)
+        blinding.notesRecyclerView.adapter=notesAdapter
+
+        blinding.addbutton.setOnClickListener{
+            val intent=Intent(this,Addnote::class.java)
+            startActivity(intent)
         }
 
+    }
 
+    override fun onResume() {
+        super.onResume()
+        notesAdapter.refreshData(db.getAllNotes())
+
+    }
 }
-fun delete(){
-    Toast.makeText(this, "Delete Your Profile", Toast.LENGTH_LONG).show()
-}
-}
+
+

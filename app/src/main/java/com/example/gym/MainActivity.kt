@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     fun ButtonClick(view: View) {
-        val intent = Intent(this, login::class.java)
+        val intent = Intent(this, home::class.java)
 
         startActivity(intent)
         finish()

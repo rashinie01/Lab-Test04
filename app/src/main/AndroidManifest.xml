@@ -16,6 +16,15 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
+            android:name=".UpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Addnote"
+            android:exported="false" />
+        <activity
+            android:name=".new_profile"
+            android:exported="false" />
+        <activity
             android:name=".exercise"
             android:exported="false" />
         <activity
