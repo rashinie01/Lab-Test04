@@ -2,7 +2,7 @@ package com.example.gym
 
 class NoteRepository
     (  private val db:NoteDatabase
-    )
+)
 
 {
     suspend fun insert(note:Note)=db.getNoteDao().insert(note)
@@ -12,3 +12,5 @@ class NoteRepository
     fun getAllNoteItems():List<Note> =db.getNoteDao().getAllNoteItems()
 
 }
+
+

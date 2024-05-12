@@ -1,7 +1,9 @@
 package com.example.gym
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 data class Note(
-    val id: String, val title:String, val content: String)
+    @PrimaryKey(autoGenerate = true)
+    var id:Long=0, val title:String, val content: String)

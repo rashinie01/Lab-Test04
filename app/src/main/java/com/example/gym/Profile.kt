@@ -38,35 +38,9 @@ class Profile : AppCompatActivity() {
                 viewModel.setData(data)
             }
         }
-        val addItem: ImageView = findViewById(R.id.imageView2)
-        displayAlert(repository)
+
     }
 }
- private fun displayAlert(repository:NoteRepository) {
-        val builder = AlertDialog.Builder(this)
-
-        builder.setTitle("Enter New Note item:")
-        builder.setMessage("Enter the note below:")
-
-     val input = EditText(this)
-     input.inputType = InputType.TYPE_CLASS_TEXT
-
-        builder.setView(input)
-
-        builder.setPositiveButton("Ok") { dialog, which ->
-            val item = input.text.toString()
-            CoroutineScope(Dispatchers.IO).launch {
-                repository.insert(Note(item))
-            }
-        }
-
-
-        builder.setNegativeButton("Cancel") { dialog, which ->
-            dialog.cancel()
-        }
-        val alertDialog = builder.create()
-        alertDialog.show()
-    }
 
 
 

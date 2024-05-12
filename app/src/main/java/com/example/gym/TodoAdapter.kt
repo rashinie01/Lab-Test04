@@ -27,6 +27,7 @@ class TodoAdapter(items:List<Note>,repository: NoteRepository,viewModel: MainAct
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
      holder.titleTextView.text="Sample text"
+        holder.content.text="Note"
      holder.imageView2.setOnClickListener {
          Toast.makeText(context,"Note Deleted",Toast.LENGTH_LONG).show()
      }
