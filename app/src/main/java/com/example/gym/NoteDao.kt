@@ -1,6 +1,5 @@
 package com.example.gym
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -16,5 +15,8 @@ interface NoteDao {
     suspend fun delete(note: Note)
 
     @Query("SELECT* FROM Note")
-    fun getAllNoteItems(): LiveData<List<Note>>
+    fun getAllNoteItems():List<Note>
+
+    @Query("SELECT * FROM Note WHERE id=:id")
+    fun getOne(id:Int):Note
 }
