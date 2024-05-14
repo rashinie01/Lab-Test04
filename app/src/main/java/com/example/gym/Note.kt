@@ -1,7 +1,3 @@
 package com.example.gym
 
-import androidx.room.Entity
-
-@Entity
-data class Note(
-    val id: String, val title:String, val content: String)
+data class Note(val id: Int, val title: String, val content: String )

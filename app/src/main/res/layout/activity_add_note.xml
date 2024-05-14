@@ -1,55 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddNoteActivity">
 
-        <TextView
-            android:id="@+id/addNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
-            android:text="Add Note"
-            android:textColor="@color/orange"
-            android:textSize="24dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/addNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:text="Add your exerice tips"
+        android:textColor="#2A41C1"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/savebutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/baseline_check_24"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@id/addNote"/>
+    <ImageView
+        android:id="@+id/savebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/baseline_check_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/addNote" />
 
-        <EditText
-            android:id="@+id/titleEdittext"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="Enter the title"
-            android:padding="12dp"
-            android:textSize="20sp"
-            android:layout_below="@id/addNote"
-            android:background="@drawable/orange_border"
-            android:layout_marginTop="16dp"
-            android:maxLines="1" />
+    <EditText
+        android:id="@+id/titleEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/pink"
+        android:hint="Enter the title"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addNote" />
 
-        <EditText
-            android:id="@+id/contentEditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Enter the description"
-            android:gravity="top"
-            android:padding="10dp"
-            android:textSize="18sp"
-            android:background="@drawable/orange_border"
-            android:layout_below="@id/titleEdittext"
-            android:layout_marginTop="12dp"/>
+    <EditText
+        android:id="@+id/contentEditText"
+        android:layout_width="408dp"
+        android:layout_height="511dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/pink"
+        android:gravity="top"
+        android:hint="Description"
+        android:padding="10dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleEdittext" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="680dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#0A1239"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

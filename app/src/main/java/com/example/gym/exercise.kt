@@ -19,12 +19,13 @@ class exercise : AppCompatActivity() {
         imageView = findViewById(R.id.imageView)
 
         imageView.setOnClickListener {
-            ButtonClick(it)
+            ButtonClick1(it)
         }
 
     }
 
-    fun ButtonClick(view: View) {
+
+    fun ButtonClick1(view: View) {
         val intent = Intent(this, home::class.java)
 
         startActivity(intent)

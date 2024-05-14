@@ -1,47 +1,42 @@
 package com.example.gym
 
+
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.InputType
-import android.widget.EditText
-import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gym.databinding.ActivityProfileBinding
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class Profile : AppCompatActivity() {
 
-    private lateinit var adapter: TodoAdapter
-    private lateinit var viewModel: MainActvityData
+    private lateinit var binding: ActivityProfileBinding
+    private  lateinit var db: NoteDatabaseHelper
+    private lateinit var TodoAdapter: TodoAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
-        val recyclerView: RecyclerView = findViewById(R.id.rvTodoList)
-        val repository = NoteRepository(NoteDatabase.getInstance(this))
+        binding = ActivityProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this)[MainActvityData::class.java]
+        db = NoteDatabaseHelper(this)
+        TodoAdapter = TodoAdapter(db.getAllNotes(), this)
 
-        viewModel.data.observe(this) {
-            adapter = TodoAdapter(it, repository, viewModel)
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this)
-        }
-        CoroutineScope(Dispatchers.IO).launch {
-            val data = repository.getAllNoteItems()
+       binding.notesRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.notesRecyclerView.adapter = TodoAdapter
 
-            runOnUiThread {
-                viewModel.setData(data)
-            }
+
+
+        binding.addButton.setOnClickListener{
+            val intent = Intent(this, AddNoteActivity::class.java)
+            startActivity(intent)
         }
 
     }
+
+    override fun onResume(){
+        super.onResume()
+        TodoAdapter.refreshData(db.getAllNotes())
+    }
 }
-
-
-
-

@@ -14,8 +14,7 @@ class home : AppCompatActivity() {
 
     private lateinit var button: Button
     private  lateinit var button2: Button
-
-
+    lateinit var imageView: ImageView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -23,6 +22,12 @@ class home : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
+        imageView = findViewById(R.id.imageView)
+
+        imageView.setOnClickListener {
+            ButtonClick(it)
+        }
 
 
         button=findViewById(R.id.button)

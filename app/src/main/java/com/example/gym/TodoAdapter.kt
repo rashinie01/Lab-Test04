@@ -1,35 +1,57 @@
 package com.example.gym
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
-import androidx.recyclerview.widget.RecyclerView.Adapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView
 
-class TodoAdapter(items:List<Note>,repository: NoteRepository,viewModel: MainActvityData):Adapter<TodoViewHolder>() {
+class TodoAdapter (private  var notes: List<Note>, context: Context) : RecyclerView.Adapter<TodoAdapter.NoteViewHolder>() {
 
-    var context: Context?=null
-    val items=items
-    val repository=repository
-    val viewModel=viewModel
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-       val view=LayoutInflater.from(parent.context).inflate(R.layout.note_item,parent,false)
+    private val db:NoteDatabaseHelper = NoteDatabaseHelper(context)
 
-        context=parent.context
-        return TodoViewHolder(view)
+    class  NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
+        val contentTextView: TextView = itemView.findViewById(R.id.contentTextView)
+        val updateButton: ImageView = itemView.findViewById(R.id.updateButton)
+        val deleteButton: ImageView = itemView.findViewById(R.id.deleteButton)
+
     }
 
-    override fun getItemCount(): Int {
-      return items.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false )
+        return  NoteViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-     holder.titleTextView.text="Sample text"
-        holder.content.text="Note"
-     holder.imageView2.setOnClickListener {
-         Toast.makeText(context,"Note Deleted",Toast.LENGTH_LONG).show()
-     }
+    override fun getItemCount(): Int = notes.size
+
+    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
+        val note =  notes[position]
+        holder.titleTextView.text = note.title
+        holder.contentTextView.text = note.content
+
+        holder.updateButton.setOnClickListener{
+            val intent = Intent(holder.itemView.context, UpdateNoteActivity::class.java).apply {
+                putExtra("note_id", note.id)
+            }
+            holder.itemView.context.startActivity(intent)
+        }
+
+        holder.deleteButton.setOnClickListener{
+            db.deleteNote(note.id)
+            refreshData(db.getAllNotes())
+            Toast.makeText(holder.itemView.context, "Note Deleted", Toast.LENGTH_LONG).show()
+        }
+
+    }
+
+    fun refreshData(newNotes: List<Note>){
+        notes = newNotes
+        notifyDataSetChanged()
     }
 }

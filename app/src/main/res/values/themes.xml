@@ -3,9 +3,9 @@
     <style name="Base.Theme.Gym" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="color">@color/orange</item>
-        <item name="colorPrimaryVariant">@color/orange</item>
-        <item name="android:statusBarColor">@color/orange</item>
+        <item name="color">@color/pink</item>
+        <item name="colorPrimaryVariant">@color/pink</item>
+        <item name="android:statusBarColor">@color/pink</item>
     </style>
 
     <style name="Theme.Gym" parent="Base.Theme.Gym" />
