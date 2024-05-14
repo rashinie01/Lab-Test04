@@ -36,4 +36,13 @@
     <string name="add_note">Add note</string>
     <string name="notes_for_your_exercises">Notes for your exercises</string>
     <string name="note1">Enter new Note</string>
+    <string name="add_your_exercise_tips">Add your exercise tips</string>
+    <string name="enter_the_title">Enter the title</string>
+    <string name="description">Description</string>
+    <string name="back">Back</string>
+    <string name="fat_losing_challenge_with_efficient_workouts_join_the_plan_and_fight_the_fat1">Fat losing challenge with efficient workouts join the plan and fight the fat</string>
+    <string name="start1">Start</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="enter_the_title1">Enter the title</string>
+    <string name="enter_the_description">Enter the description</string>
 </resources>

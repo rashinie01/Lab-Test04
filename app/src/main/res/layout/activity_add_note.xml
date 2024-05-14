@@ -14,12 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
-        android:text="Add your exerice tips"
+        android:text="@string/add_your_exercise_tips"
         android:textColor="#2A41C1"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpUsage" />
 
     <ImageView
         android:id="@+id/savebutton"
@@ -36,7 +37,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/pink"
-        android:hint="Enter the title"
+        android:hint="@string/enter_the_title"
         android:maxLines="1"
         android:padding="12dp"
         android:textSize="20sp"
@@ -51,7 +52,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/pink"
         android:gravity="top"
-        android:hint="Description"
+        android:hint="@string/description"
         android:padding="10dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
@@ -66,7 +67,7 @@
         android:layout_marginTop="680dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#0A1239"
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

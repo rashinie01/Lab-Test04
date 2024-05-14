@@ -12,7 +12,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="16dp"
-            android:text="Edit Note"
+
+            android:text="@string/edit_note"
             android:textColor="#3F51B5"
             android:textSize="24sp"/>
 
@@ -29,7 +30,7 @@
             android:id="@+id/UpdateTitleEditText"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="Enter the title"
+            android:hint="@string/enter_the_title1"
             android:padding="12dp"
             android:textSize="20sp"
             android:layout_below="@+id/editNoteHeading"
@@ -41,7 +42,7 @@
             android:id="@+id/UpdateContentEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Enter the description"
+            android:hint="@string/enter_the_description"
             android:gravity="top"
             android:padding="12dp"
             android:textSize="18sp"
