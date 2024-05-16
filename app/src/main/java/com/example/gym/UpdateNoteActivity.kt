@@ -8,7 +8,7 @@ import com.example.gym.databinding.ActivityUpdateNoteBinding
 class UpdateNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityUpdateNoteBinding
-    private lateinit var db: NoteDatabaseHelper
+    private lateinit var db: NotesDatabaseHelper
     private var noteId: Int = -1
 
 
@@ -17,7 +17,7 @@ class UpdateNoteActivity : AppCompatActivity() {
         binding = ActivityUpdateNoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = NoteDatabaseHelper(this)
+        db = NotesDatabaseHelper(this)
 
         noteId = intent.getIntExtra("note_id", -1 )
         if(noteId == -1){

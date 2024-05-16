@@ -45,4 +45,5 @@
     <string name="edit_note">Edit Note</string>
     <string name="enter_the_title1">Enter the title</string>
     <string name="enter_the_description">Enter the description</string>
+    <string name="my_notes">My Notes</string>
 </resources>

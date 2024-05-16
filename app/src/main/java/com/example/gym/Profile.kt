@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 class Profile : AppCompatActivity() {
 
     private lateinit var binding: ActivityProfileBinding
-    private  lateinit var db: NoteDatabaseHelper
+    private  lateinit var db: NotesDatabaseHelper
     private lateinit var TodoAdapter: TodoAdapter
 
 
@@ -20,7 +20,7 @@ class Profile : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = NoteDatabaseHelper(this)
+        db = NotesDatabaseHelper(this)
         TodoAdapter = TodoAdapter(db.getAllNotes(), this)
 
        binding.notesRecyclerView.layoutManager = LinearLayoutManager(this)

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class TodoAdapter (private  var notes: List<Note>, context: Context) : RecyclerView.Adapter<TodoAdapter.NoteViewHolder>() {
 
-    private val db:NoteDatabaseHelper = NoteDatabaseHelper(context)
+    private val db:NotesDatabaseHelper = NotesDatabaseHelper(context)
 
     class  NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 

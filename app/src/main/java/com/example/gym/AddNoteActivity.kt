@@ -13,7 +13,7 @@ import com.example.gym.databinding.ActivityMainBinding
 class AddNoteActivity : AppCompatActivity() {
 
     private  lateinit var binding: ActivityAddNoteBinding
-    private lateinit var db: NoteDatabaseHelper
+    private lateinit var db: NotesDatabaseHelper
     private lateinit var button3:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,20 +22,19 @@ class AddNoteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         button3 = findViewById(R.id.button3)
-
         button3.setOnClickListener {
             ButtonClick(it)
         }
 
-        db = NoteDatabaseHelper(this)
+        db = NotesDatabaseHelper(this)
 
         binding.savebutton.setOnClickListener{
-            val title = binding.addNote.text.toString()
+            val title = binding.titleEdittext.text.toString()
             val content = binding.contentEditText.text.toString()
             val note = Note(0,title,content)
             db.insertNote(note)
             finish()
-            Toast.makeText(this, "Note Saved", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Note Saved", Toast.LENGTH_SHORT).show()
         }
 
 }
